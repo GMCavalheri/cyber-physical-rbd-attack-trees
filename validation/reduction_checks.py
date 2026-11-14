@@ -150,7 +150,9 @@ def main() -> None:
         if not m.is_tree():
             dags += 1
             naive_err = max(naive_err, abs(bottom_up_probability(m) - enum))
-    rows.append(["Thm 3", "exact (Shannon) = enumeration on random DAGs", N, "max abs. error", s_err])
+    rows.append(
+        ["Thm 3", "exact (Shannon) = enumeration on random DAGs", N, "max abs. error", s_err]
+    )
     rows.append(
         [
             "(contrast)",
