@@ -184,3 +184,12 @@ def test_duplicate_and_empty_names_are_rejected() -> None:
         m.or_("a", "a")
     with pytest.raises(ModelError):
         m.add_event(physical_event("", probability=0.2))
+
+
+def test_rooted_at_extracts_a_branch() -> None:
+    m = small_model()
+    sub = m.rooted_at("both_sensors").validate()
+    assert sub.top == "both_sensors"
+    assert {e.name for e in sub.basic_events()} == {"sensor_a", "sensor_b"}
+    with pytest.raises(ModelError):
+        m.rooted_at("nope")

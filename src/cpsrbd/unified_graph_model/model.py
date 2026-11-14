@@ -101,6 +101,14 @@ class UnifiedModel:
         other.events = {n: e for n, e in self.events.items() if n in keep}
         return other
 
+    def rooted_at(self, name: str) -> UnifiedModel:
+        """The sub-model below ``name``, with ``name`` as its top event."""
+        if name not in self:
+            raise ModelError(f"no node named {name!r}")
+        other = self.copy()
+        other.top = name
+        return other.pruned()
+
     # ----------------------------------------------------------------- queries
     def __contains__(self, name: object) -> bool:
         return name in self.gates or name in self.events

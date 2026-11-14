@@ -9,7 +9,7 @@ import math
 
 import pytest
 from hypothesis import given, settings
-from hypothesis import strategies as st
+from strategies import rbds
 
 from cpsrbd.rbd import (
     Block,
@@ -188,30 +188,6 @@ def test_inconsistent_repeated_block_is_rejected() -> None:
 
 
 # ---------------------------------------------------------------- random series-parallel RBDs
-
-leaf_rel = st.floats(0.01, 0.99)
-
-
-@st.composite
-def rbds(draw: st.DrawFn, depth: int = 3) -> Rbd:
-    counter = [0]
-
-    def new_block() -> Block:
-        counter[0] += 1
-        return Block(f"b{counter[0]}", draw(leaf_rel))
-
-    def build(d: int) -> Rbd:
-        if d == 0 or draw(st.booleans()):
-            return new_block()
-        kids = tuple(build(d - 1) for _ in range(draw(st.integers(1, 3))))
-        kind = draw(st.sampled_from(["series", "parallel", "kofn"]))
-        if kind == "series":
-            return Series(kids)
-        if kind == "parallel":
-            return Parallel(kids)
-        return KofN(draw(st.integers(1, len(kids))), kids)
-
-    return build(depth)
 
 
 @settings(max_examples=60, deadline=None)
