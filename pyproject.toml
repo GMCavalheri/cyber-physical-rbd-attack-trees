@@ -1,6 +1,6 @@
 [project]
 name = "cpsrbd"
-version = "0.1.0"
+version = "1.0.0"
 description = "One graph for physical failure and cyber attack: reliability block diagrams and attack trees unified for consequence-driven (CCE-style) analysis of cyber-physical systems."
 readme = "README.md"
 license = { text = "MIT" }

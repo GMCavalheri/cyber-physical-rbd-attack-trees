@@ -5,4 +5,4 @@ attack tree of security risk analysis into a single directed acyclic graph roote
 system-level consequence, in the spirit of Consequence-driven Cyber-Informed Engineering (CCE).
 """
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
