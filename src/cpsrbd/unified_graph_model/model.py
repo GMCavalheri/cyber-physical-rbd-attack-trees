@@ -250,8 +250,9 @@ class UnifiedModel:
         physical = sum(e.origin is Origin.PHYSICAL for e in events)
         gates = len([n for n in self.reachable() if n in self.gates])
         return (
-            f"UnifiedModel(top={self.top!r}: {gates} gates, {physical} physical events, "
-            f"{len(events) - physical} cyber steps, shared events {len(self.shared_events())})"
+            f"UnifiedModel(top={self.top!r}: {gates} gates, physical events: {physical}, "
+            f"cyber steps: {len(events) - physical}, "
+            f"shared events: {len(self.shared_events())})"
         )
 
     def __repr__(self) -> str:

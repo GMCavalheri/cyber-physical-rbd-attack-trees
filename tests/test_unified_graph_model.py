@@ -97,7 +97,7 @@ def test_queries_on_a_small_model() -> None:
     assert isinstance(m.node("top"), Gate) and isinstance(m.node("power"), BasicEvent)
     with pytest.raises(ModelError):
         m.node("nope")
-    assert "1 cyber steps" in repr(m)
+    assert "cyber steps: 1" in repr(m)
 
 
 def test_structure_function_is_the_boolean_logic() -> None:
