@@ -186,3 +186,41 @@ def origin_overrides(model: UnifiedModel, keep: Origin) -> dict[str, float]:
     the attack-only view with perfect hardware.
     """
     return {e.name: 0.0 for e in model.basic_events() if e.origin is not keep}
+
+
+@dataclass(frozen=True)
+class OriginDecomposition:
+    """What each partial view of a mixed model sees, and the interaction gap between them.
+
+    ``physical`` is P(TOP) with every cyber step switched off (the reliability view), ``cyber``
+    with every physical failure switched off (the attack-tree view), ``separate`` is what the
+    two views give when combined as independent risks, ``1 - (1 - physical)(1 - cyber)``, and
+    ``gap = full - separate`` is the probability that the top event happens *only* through
+    mixed scenarios, which neither view contains (Proposition 5 in docs/formal-semantics.md:
+    it is never negative).
+    """
+
+    full: float
+    physical: float
+    cyber: float
+
+    @property
+    def separate(self) -> float:
+        return 1.0 - (1.0 - self.physical) * (1.0 - self.cyber)
+
+    @property
+    def gap(self) -> float:
+        return self.full - self.separate
+
+    @property
+    def gap_share(self) -> float:
+        return 0.0 if self.full == 0.0 else self.gap / self.full
+
+
+def origin_decomposition(model: UnifiedModel) -> OriginDecomposition:
+    """Exact full, physical-only and cyber-only top-event probabilities."""
+    return OriginDecomposition(
+        exact_probability(model),
+        exact_probability(model, origin_overrides(model, Origin.PHYSICAL)),
+        exact_probability(model, origin_overrides(model, Origin.CYBER)),
+    )

@@ -10,6 +10,7 @@ from cpsrbd.probability_likelihood_propagation.domains import (
 )
 from cpsrbd.probability_likelihood_propagation.probability import (
     MonteCarloResult,
+    OriginDecomposition,
     bottom_up_probability,
     conditional_probability,
     enumerate_probability,
@@ -17,6 +18,7 @@ from cpsrbd.probability_likelihood_propagation.probability import (
     gate_probability,
     monte_carlo_probability,
     node_probabilities,
+    origin_decomposition,
     origin_overrides,
     wilson_interval,
 )
@@ -28,6 +30,7 @@ __all__ = [
     "PROBABILITY",
     "Domain",
     "MonteCarloResult",
+    "OriginDecomposition",
     "bottom_up_probability",
     "conditional_probability",
     "enumerate_probability",
@@ -36,6 +39,7 @@ __all__ = [
     "gate_probability",
     "monte_carlo_probability",
     "node_probabilities",
+    "origin_decomposition",
     "origin_overrides",
     "wilson_interval",
 ]
