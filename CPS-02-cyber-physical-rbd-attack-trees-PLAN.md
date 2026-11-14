@@ -50,7 +50,7 @@ cyber-physical-rbd-attack-trees/
 - [x] **Phase 1 — Unified graph representation**: design and implement the combined RBD/attack-tree graph data structure.
 - [x] **Phase 2 — Consequence-driven modeling**: build out a representative synthetic system model starting from a defined top-event consequence, following CCE-style consequence-first analysis.
 - [x] **Phase 3 — Probability/likelihood propagation**: implement propagation logic for both physical and cyber branches, validate against simple known RBD cases (all-physical scenario should exactly reduce to classical RBD results).
-- [ ] **Phase 4 — Critical path identification**: implement lowest-effort-path analysis across the unified graph.
+- [x] **Phase 4 — Critical path identification**: implement lowest-effort-path analysis across the unified graph.
 - [ ] **Phase 5 — Mitigation trade-off analysis**: model and compare physical vs. cyber mitigation options within the same framework.
 - [ ] **Phase 6 — Documentation and publishing**: written methodology explanation with explicit, clear reference to the CCE framework as the inspiration and structure.
 
