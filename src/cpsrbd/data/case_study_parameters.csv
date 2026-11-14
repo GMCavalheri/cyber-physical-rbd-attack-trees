@@ -1,0 +1,16 @@
+name,origin,description,failure_rate_per_hour,probability,capability_required,opportunity,cost_weeks,technique,basis
+egi_1_hw,physical,Embedded GNSS/INS unit 1 hardware failure,2.0e-4,,,,,,assumption: MTBF 5000 h for a navigation unit
+egi_2_hw,physical,Embedded GNSS/INS unit 2 hardware failure,2.0e-4,,,,,,assumption: MTBF 5000 h for a navigation unit
+power_bus_1,physical,Electrical power bus 1 lost,2.0e-5,,,,,,assumption: MTBF 50000 h
+power_bus_2,physical,Electrical power bus 2 lost,2.0e-5,,,,,,assumption: MTBF 50000 h
+bus_ch_a,physical,Data bus channel A failure (cable/transceiver),1.0e-5,,,,,,assumption: MTBF 100000 h
+bus_ch_b,physical,Data bus channel B failure (cable/transceiver),1.0e-5,,,,,,assumption: MTBF 100000 h
+mc_hw,physical,Mission computer hardware failure,5.0e-5,,,,,,assumption: MTBF 20000 h
+integrity_monitor_miss,physical,Navigation integrity cross-check misses a spoofed solution,,0.1,,,,,assumption: missed-detection probability per spoofing episode
+gnss_spoof,cyber,GNSS signals spoofed so both units compute a false position (effect level),,,3,3,4,,assumption: RF-domain effect; no ATT&CK for ICS technique
+compromise_maintenance_laptop,cyber,Maintenance laptop used for software loads is compromised,,,2,3,3,T0847,assumption: transient maintenance asset exposed to removable media
+supply_chain_implant,cyber,Implant in a bus-connected unit before delivery,,,5,2,40,T0862,assumption: long lead time and high capability needed
+flood_bus,cyber,A bus node floods both channels and denies data delivery,,,2,4,2,T0814,assumption: effect-level denial of service on a shared bus
+inject_false_nav_messages,cyber,False navigation messages injected on the bus,,,3,4,6,T0856,assumption: spoofed reporting messages at the effect level
+malicious_program_download,cyber,Modified software load transferred to the mission computer,,,3,3,8,T0843,assumption: effect-level program download
+defeat_load_verification,cyber,Software load verification accepts the modified load,,,4,2,12,T0849,assumption: masquerading as a legitimate load
