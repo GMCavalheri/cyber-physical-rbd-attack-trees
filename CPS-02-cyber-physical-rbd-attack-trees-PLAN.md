@@ -52,7 +52,7 @@ cyber-physical-rbd-attack-trees/
 - [x] **Phase 3 — Probability/likelihood propagation**: implement propagation logic for both physical and cyber branches, validate against simple known RBD cases (all-physical scenario should exactly reduce to classical RBD results).
 - [x] **Phase 4 — Critical path identification**: implement lowest-effort-path analysis across the unified graph.
 - [x] **Phase 5 — Mitigation trade-off analysis**: model and compare physical vs. cyber mitigation options within the same framework.
-- [ ] **Phase 6 — Documentation and publishing**: written methodology explanation with explicit, clear reference to the CCE framework as the inspiration and structure.
+- [x] **Phase 6 — Documentation and publishing**: written methodology explanation with explicit, clear reference to the CCE framework as the inspiration and structure.
 
 ## Validation Strategy
 - Physical-only sub-cases validated against classical RBD series/parallel probability formulas (exact match required).
