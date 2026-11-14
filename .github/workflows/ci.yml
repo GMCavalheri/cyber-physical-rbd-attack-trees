@@ -45,6 +45,21 @@ jobs:
       - name: Tests with the coverage gate
         run: uv run pytest --cov --cov-report=term
 
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          enable-cache: true
+      - run: uv sync
+      - name: Every validation script reproduces its committed results
+        run: |
+          uv run python validation/run_all.py
+          git diff --exit-code -- validation/results
+      - name: Every notebook executes
+        run: uv run python notebooks/build_notebooks.py --check
+
   security:
     runs-on: ubuntu-latest
     permissions:
